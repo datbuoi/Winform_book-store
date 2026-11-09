@@ -1,14 +1,17 @@
-﻿﻿using System;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using BookStore_LTTQ.BLL;
+using BookStore_LTTQ.DTO;
 
-namespace BookStore_LTTQ
+namespace BookStore_LTTQ.GUI
 {
     public partial class FormSach : Form
     {
+        private readonly SachBLL _sachBLL = new SachBLL();
         private bool isThemMoi = false;
 
         public FormSach()
@@ -27,12 +30,12 @@ namespace BookStore_LTTQ
         private void LoadComboBoxes()
         {
             // Loại sách
-            cboLoaiSach.DataSource = DataProcess.DocBang("SELECT MaLoai, TenLoai FROM tLoaiSach");
+            cboLoaiSach.DataSource = _sachBLL.GetLoaiSach();
             cboLoaiSach.DisplayMember = "TenLoai";
             cboLoaiSach.ValueMember = "MaLoai";
 
             // Lĩnh vực
-            DataTable dtLV = DataProcess.DocBang("SELECT MaLV, TenLV FROM tLinhVuc");
+            DataTable dtLV = _sachBLL.GetLinhVuc();
             cboLinhVuc.DataSource = dtLV;
             cboLinhVuc.DisplayMember = "TenLV";
             cboLinhVuc.ValueMember = "MaLV";
@@ -47,7 +50,7 @@ namespace BookStore_LTTQ
             cboTimLinhVuc.ValueMember = "MaLV";
 
             // Tác giả
-            DataTable dtTG = DataProcess.DocBang("SELECT MaTG, TenTG FROM tTacGia");
+            DataTable dtTG = _sachBLL.GetTacGia();
             cboTacGia.DataSource = dtTG;
             cboTacGia.DisplayMember = "TenTG";
             cboTacGia.ValueMember = "MaTG";
@@ -62,7 +65,7 @@ namespace BookStore_LTTQ
             cboTimTacGia.ValueMember = "MaTG";
 
             // NXB
-            DataTable dtNXB = DataProcess.DocBang("SELECT MaNXB, TenNXB FROM tNXB");
+            DataTable dtNXB = _sachBLL.GetNXB();
             cboNXB.DataSource = dtNXB;
             cboNXB.DisplayMember = "TenNXB";
             cboNXB.ValueMember = "MaNXB";
@@ -77,34 +80,23 @@ namespace BookStore_LTTQ
             cboTimNXB.ValueMember = "MaNXB";
 
             // Ngôn ngữ
-            cboNgonNgu.DataSource = DataProcess.DocBang("SELECT MaNN, TenNN FROM tNgonNgu");
+            cboNgonNgu.DataSource = _sachBLL.GetNgonNgu();
             cboNgonNgu.DisplayMember = "TenNN";
             cboNgonNgu.ValueMember = "MaNN";
 
             // Tình trạng
-            cboTinhTrang.DataSource = DataProcess.DocBang("SELECT MaTT, TenTT FROM tTinhTrang");
+            cboTinhTrang.DataSource = _sachBLL.GetTinhTrang();
             cboTinhTrang.DisplayMember = "TenTT";
             cboTinhTrang.ValueMember = "MaTT";
         }
 
-        private void LoadDataSach(string query = null, SqlParameter[] sqlParams = null)
+        private void LoadDataSach(DataTable dt = null)
         {
-            if (string.IsNullOrEmpty(query))
+            if (dt == null)
             {
-                query = @"SELECT s.MaSach, s.TenSach, l.TenLoai, lv.TenLV, tg.TenTG, nxb.TenNXB, 
-                                 nn.TenNN, tt.TenTT, s.SoTrang, s.GiaSach, s.DonGiaThue, 
-                                 s.SoLuong, s.Anh, s.GhiChu,
-                                 s.MaLoai, s.MaLV, s.MaTG, s.MaNXB, s.MaNN, s.MaTT
-                          FROM tSachTruyen s
-                          JOIN tLoaiSach l ON s.MaLoai = l.MaLoai
-                          JOIN tLinhVuc lv ON s.MaLV = lv.MaLV
-                          JOIN tTacGia tg ON s.MaTG = tg.MaTG
-                          JOIN tNXB nxb ON s.MaNXB = nxb.MaNXB
-                          JOIN tNgonNgu nn ON s.MaNN = nn.MaNN
-                          JOIN tTinhTrang tt ON s.MaTT = tt.MaTT";
+                dt = _sachBLL.GetAllSach();
             }
 
-            DataTable dt = DataProcess.DocBang(query, sqlParams);
             dgvSach.DataSource = dt;
 
             // Đặt tên cột tiếng Việt đẹp mắt
@@ -232,9 +224,7 @@ namespace BookStore_LTTQ
             LockInputs(false);
             SetButtonState(false);
 
-            // Sinh mã sách tự động
-            object newMa = DataProcess.LayGiaTri("DECLARE @Ma CHAR(8); EXEC SP_GenerateNewMaSach @Ma OUTPUT; SELECT @Ma;");
-            txtMaSach.Text = newMa != null ? newMa.ToString().Trim() : "S_000011";
+            txtMaSach.Text = _sachBLL.SinhMaSachMoi();
             txtTenSach.Focus();
         }
 
@@ -259,103 +249,69 @@ namespace BookStore_LTTQ
                 return;
             }
 
-            // Kiểm tra xem sách đã từng được thuê chưa
-            object cnt = DataProcess.LayGiaTri("SELECT COUNT(*) FROM tChiTietThueSach WHERE MaSach = @MaSach",
-                new SqlParameter[] { new SqlParameter("@MaSach", txtMaSach.Text.Trim()) });
-            if (cnt != null && Convert.ToInt32(cnt) > 0)
-            {
-                MessageBox.Show("Không thể xóa sách này vì đã phát sinh giao dịch thuê sách!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn xóa cuốn sách '" + txtTenSach.Text + "' không?",
                 "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-                string sql = "DELETE FROM tSachTruyen WHERE MaSach = @MaSach";
-                int r = DataProcess.ThucThiLenh(sql, new SqlParameter[] { new SqlParameter("@MaSach", txtMaSach.Text.Trim()) });
-                if (r > 0)
+                if (_sachBLL.XoaSach(txtMaSach.Text.Trim(), out string error))
                 {
                     MessageBox.Show("Đã xóa sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadDataSach();
                     ClearInputs();
+                }
+                else
+                {
+                    MessageBox.Show(error, "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTenSach.Text))
+            SachDTO s = new SachDTO
             {
-                MessageBox.Show("Vui lòng nhập tên sách truyện!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtTenSach.Focus();
-                return;
-            }
+                MaSach = txtMaSach.Text.Trim(),
+                TenSach = txtTenSach.Text.Trim(),
+                MaLoai = cboLoaiSach.SelectedValue?.ToString(),
+                MaLV = cboLinhVuc.SelectedValue?.ToString(),
+                MaTG = cboTacGia.SelectedValue?.ToString(),
+                MaNXB = cboNXB.SelectedValue?.ToString(),
+                MaNN = cboNgonNgu.SelectedValue?.ToString(),
+                SoTrang = (int)numSoTrang.Value,
+                GiaSach = numGiaSach.Value,
+                DonGiaThue = numDonGiaThue.Value,
+                MaTT = cboTinhTrang.SelectedValue?.ToString(),
+                SoLuong = (int)numSoLuong.Value,
+                Anh = txtAnh.Text.Trim(),
+                GhiChu = txtGhiChu.Text.Trim()
+            };
 
             if (isThemMoi)
             {
-                string sql = @"INSERT INTO tSachTruyen (MaSach, TenSach, MaLoai, MaLV, MaTG, MaNXB, MaNN, 
-                                                       SoTrang, GiaSach, DonGiaThue, MaTT, SoLuong, Anh, GhiChu)
-                               VALUES (@MaSach, @TenSach, @MaLoai, @MaLV, @MaTG, @MaNXB, @MaNN, 
-                                       @SoTrang, @GiaSach, @DonGiaThue, @MaTT, @SoLuong, @Anh, @GhiChu)";
-                SqlParameter[] p = {
-                    new SqlParameter("@MaSach", txtMaSach.Text.Trim()),
-                    new SqlParameter("@TenSach", txtTenSach.Text.Trim()),
-                    new SqlParameter("@MaLoai", cboLoaiSach.SelectedValue?.ToString()),
-                    new SqlParameter("@MaLV", cboLinhVuc.SelectedValue?.ToString()),
-                    new SqlParameter("@MaTG", cboTacGia.SelectedValue?.ToString()),
-                    new SqlParameter("@MaNXB", cboNXB.SelectedValue?.ToString()),
-                    new SqlParameter("@MaNN", cboNgonNgu.SelectedValue?.ToString()),
-                    new SqlParameter("@SoTrang", (int)numSoTrang.Value),
-                    new SqlParameter("@GiaSach", numGiaSach.Value),
-                    new SqlParameter("@DonGiaThue", numDonGiaThue.Value),
-                    new SqlParameter("@MaTT", cboTinhTrang.SelectedValue?.ToString()),
-                    new SqlParameter("@SoLuong", (int)numSoLuong.Value),
-                    new SqlParameter("@Anh", txtAnh.Text.Trim()),
-                    new SqlParameter("@GhiChu", txtGhiChu.Text.Trim())
-                };
-
-                int r = DataProcess.ThucThiLenh(sql, p);
-                if (r > 0)
+                if (_sachBLL.ThemSach(s, out string error))
                 {
                     MessageBox.Show("Thêm mới sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadDataSach();
                     LockInputs(true);
                     SetButtonState(true);
                 }
+                else
+                {
+                    MessageBox.Show(error, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
-                string sql = @"UPDATE tSachTruyen 
-                               SET TenSach = @TenSach, MaLoai = @MaLoai, MaLV = @MaLV, MaTG = @MaTG, 
-                                   MaNXB = @MaNXB, MaNN = @MaNN, SoTrang = @SoTrang, GiaSach = @GiaSach, 
-                                   DonGiaThue = @DonGiaThue, MaTT = @MaTT, SoLuong = @SoLuong, 
-                                   Anh = @Anh, GhiChu = @GhiChu
-                               WHERE MaSach = @MaSach";
-                SqlParameter[] p = {
-                    new SqlParameter("@MaSach", txtMaSach.Text.Trim()),
-                    new SqlParameter("@TenSach", txtTenSach.Text.Trim()),
-                    new SqlParameter("@MaLoai", cboLoaiSach.SelectedValue?.ToString()),
-                    new SqlParameter("@MaLV", cboLinhVuc.SelectedValue?.ToString()),
-                    new SqlParameter("@MaTG", cboTacGia.SelectedValue?.ToString()),
-                    new SqlParameter("@MaNXB", cboNXB.SelectedValue?.ToString()),
-                    new SqlParameter("@MaNN", cboNgonNgu.SelectedValue?.ToString()),
-                    new SqlParameter("@SoTrang", (int)numSoTrang.Value),
-                    new SqlParameter("@GiaSach", numGiaSach.Value),
-                    new SqlParameter("@DonGiaThue", numDonGiaThue.Value),
-                    new SqlParameter("@MaTT", cboTinhTrang.SelectedValue?.ToString()),
-                    new SqlParameter("@SoLuong", (int)numSoLuong.Value),
-                    new SqlParameter("@Anh", txtAnh.Text.Trim()),
-                    new SqlParameter("@GhiChu", txtGhiChu.Text.Trim())
-                };
-
-                int r = DataProcess.ThucThiLenh(sql, p);
-                if (r > 0)
+                if (_sachBLL.SuaSach(s, out string error))
                 {
                     MessageBox.Show("Cập nhật thông tin sách thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadDataSach();
                     LockInputs(true);
                     SetButtonState(true);
+                }
+                else
+                {
+                    MessageBox.Show(error, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -396,15 +352,8 @@ namespace BookStore_LTTQ
             string tg = cboTimTacGia.SelectedValue?.ToString().Trim();
             string nxb = cboTimNXB.SelectedValue?.ToString().Trim();
 
-            SqlParameter[] p = {
-                new SqlParameter("@TenSach", string.IsNullOrEmpty(ten) ? (object)DBNull.Value : ten),
-                new SqlParameter("@MaLV", string.IsNullOrEmpty(lv) ? (object)DBNull.Value : lv),
-                new SqlParameter("@MaTG", string.IsNullOrEmpty(tg) ? (object)DBNull.Value : tg),
-                new SqlParameter("@MaNXB", string.IsNullOrEmpty(nxb) ? (object)DBNull.Value : nxb)
-            };
-
-            DataTable dt = DataProcess.ExecProcedure("SP_TimSach", p);
-            dgvSach.DataSource = dt;
+            DataTable dt = _sachBLL.TimKiem(ten, lv, tg, nxb);
+            LoadDataSach(dt);
 
             MessageBox.Show("Tìm thấy " + dt.Rows.Count + " sách truyện thỏa mãn tiêu chí!", "Kết quả tìm kiếm", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

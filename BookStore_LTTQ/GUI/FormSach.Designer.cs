@@ -1,4 +1,4 @@
-﻿namespace BookStore_LTTQ
+namespace BookStore_LTTQ.GUI
 {
     partial class FormSach
     {

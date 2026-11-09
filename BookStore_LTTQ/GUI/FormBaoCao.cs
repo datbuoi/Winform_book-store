@@ -1,12 +1,14 @@
-﻿﻿using System;
+using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Forms;
+using BookStore_LTTQ.BLL;
 
-namespace BookStore_LTTQ
+namespace BookStore_LTTQ.GUI
 {
     public partial class FormBaoCao : Form
     {
+        private readonly BaoCaoBLL _baoCaoBLL = new BaoCaoBLL();
+
         public FormBaoCao()
         {
             InitializeComponent();
@@ -28,12 +30,7 @@ namespace BookStore_LTTQ
         // =========================================================================
         private void LoadBaoCaoChuaTra()
         {
-            string sql = @"SELECT MaThue, TenKH, MaSach, TenSach, SoLuong, NgayThue, 
-                                  SoNgayDaThue, TienThueTamTinh, TienDatCoc, NhanVienLap
-                           FROM vw_SachDangThueChuaTra
-                           ORDER BY NgayThue DESC";
-
-            DataTable dt = DataProcess.DocBang(sql);
+            DataTable dt = _baoCaoBLL.GetBaoCaoChuaTra();
             dgvChuaTra.DataSource = dt;
 
             if (dgvChuaTra.Columns.Contains("MaThue")) dgvChuaTra.Columns["MaThue"].HeaderText = "Mã thuê";
@@ -87,12 +84,7 @@ namespace BookStore_LTTQ
 
             int nam = (int)numNamDoanhThu.Value;
 
-            SqlParameter[] p = {
-                new SqlParameter("@Kieu", kieu),
-                new SqlParameter("@Nam", nam)
-            };
-
-            DataTable dt = DataProcess.ExecProcedure("SP_DoanhThu", p);
+            DataTable dt = _baoCaoBLL.GetBaoCaoDoanhThu(kieu, nam);
             dgvDoanhThu.DataSource = dt;
 
             string tenKy = "Tháng";
@@ -132,12 +124,10 @@ namespace BookStore_LTTQ
         // =========================================================================
         private void LoadBaoCaoTop5(bool toanBo = false)
         {
-            SqlParameter[] p = {
-                new SqlParameter("@TuNgay", toanBo ? (object)DBNull.Value : dtpTop5TuNgay.Value.Date),
-                new SqlParameter("@DenNgay", toanBo ? (object)DBNull.Value : dtpTop5DenNgay.Value.Date)
-            };
+            DateTime? tu = toanBo ? (DateTime?)null : dtpTop5TuNgay.Value.Date;
+            DateTime? den = toanBo ? (DateTime?)null : dtpTop5DenNgay.Value.Date;
 
-            DataTable dt = DataProcess.ExecProcedure("SP_Top5SachDoanhThu", p);
+            DataTable dt = _baoCaoBLL.GetBaoCaoTop5(tu, den);
             dgvTop5.DataSource = dt;
 
             if (dgvTop5.Columns.Contains("Hang")) dgvTop5.Columns["Hang"].HeaderText = "Hạng";

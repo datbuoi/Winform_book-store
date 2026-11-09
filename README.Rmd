@@ -1,0 +1,116 @@
+---
+title: "Báo Cáo Dự Án: Quản Lý Cửa Hàng Cho Thuê Sách Truyện"
+subtitle: "Bài Tập Lớn Học Phần Lập Trình Trực Quan (LTTQ)"
+author: "Sinh viên UTC"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: cosmo
+    highlight: tango
+  pdf_document:
+    toc: true
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Tổng quan Đề tài
+
+Dự án **Quản lý Cửa hàng Cho Thuê Sách Truyện** (`BookStore_LTTQ`) được phát triển nhằm mục đích tin học hóa và tự động hóa toàn bộ quy trình cho thuê, quản lý kho sách, lập phiếu trả và báo cáo doanh thu tài chính.
+
+* **Ngôn ngữ phát triển:** C# (.NET Framework 4.7.2)
+* **Giao diện:** Windows Forms (WinForms)
+* **Hệ quản trị cơ sở dữ liệu:** Microsoft SQL Server
+* **Kiến trúc phần mềm:** Mô hình phân tầng 3 lớp (**3-Layer Architecture: GUI - BLL - DAL - DTO**)
+
+---
+
+# Kiến trúc Phân tầng (3-Layer Architecture)
+
+Hệ thống được tổ chức khoa học theo chuẩn công nghiệp:
+
+## Tầng Đối tượng Dữ liệu (DTO - Data Transfer Object)
+* `SachDTO.cs`: Thực thể Sách truyện, lưu trữ thuộc tính sách và liên kết hiển thị.
+* `NhanVienDTO.cs`: Thực thể Nhân viên, lưu thông tin cá nhân và ca làm.
+* `KhachHangDTO.cs`: Thực thể Khách hàng thuê sách.
+* `ThueTraDTO.cs`: Cặp DTO phiếu thuê, chi tiết thuê, phiếu trả, chi tiết trả.
+* `DanhMucDTO.cs`: DTO các danh mục phụ (Loại sách, Lĩnh vực, Tác giả, NXB, Tình trạng, Vi phạm).
+
+## Tầng Truy cập Dữ liệu (DAL - Data Access Layer)
+* `DataProcess.cs`: Lớp cơ sở tương tác ADO.NET, quản lý `SqlConnection`, `SqlCommand`, `SqlDataAdapter`, thực thi Transaction.
+* `SachDAL.cs`: Thực hiện các truy vấn dữ liệu sách, kiểm tra tồn kho, kiểm tra sách đã phát sinh giao dịch thuê.
+* `NhanVienDAL.cs`: Xử lý CRUD và tìm kiếm nhân viên theo ca làm/giới tính.
+* `ThueTraDAL.cs`: Quản lý giao dịch thêm mới phiếu thuê và phiếu trả, cập nhật trạng thái `DaTra`.
+* `BaoCaoDAL.cs`: Tương tác với View và Stored Procedure thống kê báo cáo.
+
+## Tầng Xử lý Nghiệp vụ (BLL - Business Logic Layer)
+* `SachBLL.cs`: Kiểm tra tính hợp lệ của dữ liệu sách (giá thuê không âm, tên sách không rỗng), sinh mã sách tự động.
+* `NhanVienBLL.cs`: Xác thực dữ liệu nhân viên, độ tuổi lao động, mức lương.
+* `ThueTraBLL.cs`: Kiểm tra tính sẵn sàng của sách trong kho, tính toán số ngày thuê, tiền phạt vi phạm.
+* `BaoCaoBLL.cs`: Xử lý logic lọc báo cáo theo Tháng, Quý, Năm và khoảng thời gian.
+
+## Tầng Giao diện Người dùng (GUI - Graphical User Interface)
+* `FormMain`: Trung tâm điều hướng ứng dụng.
+* `FormSach`: Giao diện quản lý sách truyện, tìm kiếm nâng cao và chọn ảnh bìa.
+* `FormNhanVien`: Giao diện quản lý nhân sự cửa hàng.
+* `FormThueSach`: Giao diện lập phiếu thuê sách.
+* `FormTraSach`: Giao diện nhận trả sách và thanh toán.
+* `FormBaoCao`: Giao diện hiển thị báo cáo đa chiều.
+
+---
+
+# Thiết kế Cơ sở Dữ liệu
+
+Cơ sở dữ liệu `QLChoThueSach` bao gồm 15 bảng liên kết:
+
+1. `tSachTruyen` (MaSach, TenSach, MaLoai, MaLV, MaTG, MaNXB, MaNN, MaTT, SoTrang, GiaSach, DonGiaThue, SoLuong, Anh, GhiChu)
+2. `tLoaiSach` (MaLoai, TenLoai)
+3. `tLinhVuc` (MaLV, TenLV)
+4. `tTacGia` (MaTG, TenTG, NgaySinh, GioiTinh, DiaChi)
+5. `tNXB` (MaNXB, TenNXB, DiaChi, DienThoai)
+6. `tNgonNgu` (MaNN, TenNN)
+7. `tTinhTrang` (MaTT, TenTT)
+8. `tKhachHang` (MaKH, TenKH, NgaySinh, GioiTinh, DiaChi)
+9. `tNhanVien` (MaNV, TenNV, NamSinh, GioiTinh, DiaChi, DienThoai, LuongThang)
+10. `tCaLam` (MaCa, TenCa)
+11. `tViPham` (MaVP, TenVP, TienPhat)
+12. `tThueSach` (MaThue, MaKH, MaNV, MaCa, NgayThue, TienDatCoc)
+13. `tChiTietThueSach` (MaThue, MaSach, SoLuong, DaTra)
+14. `tTraSach` (MaTra, MaThue, MaNV, NgayTra, TongTien)
+15. `tChiTietTraSach` (MaTra, MaSach, MaVP, ThanhTien)
+
+---
+
+# Đáp ứng 9 Yêu cầu Nghiệp vụ
+
+1. **Yêu cầu 1:** Chi tiết thuê sách chỉ hiển thị sách có `SoLuong > 0`.
+2. **Yêu cầu 2:** Tự động trừ tồn kho khi thuê và cộng lại tồn kho khi trả (sử dụng SQL Trigger & Transaction).
+3. **Yêu cầu 3:** Trả sách chỉ hiển thị danh sách các cuốn sách chưa trả (`DaTra = 0`) thuộc mã thuê tương ứng.
+4. **Yêu cầu 4:** Công thức tính tiền chuẩn: $\text{Thành tiền} = \text{Tiền thuê} + \text{Tiền phạt}$. Trong đó $\text{Tiền thuê} = \text{Đơn giá thuê} \times \text{Số ngày thuê} \times \text{Số lượng}$.
+5. **Yêu cầu 5:** Tìm kiếm sách theo Tên, Lĩnh vực, Tác giả, Nhà xuất bản.
+6. **Yêu cầu 6:** Tìm kiếm nhân viên theo Tên, Ca làm việc, Giới tính.
+7. **Yêu cầu 7:** Báo cáo danh sách sách đang cho thuê chưa trả.
+8. **Yêu cầu 8:** Báo cáo tổng doanh thu theo Tháng, Quý, Năm.
+9. **Yêu cầu 9:** Báo cáo Top 5 sách truyện mang lại doanh thu cao nhất.
+
+---
+
+# Hướng dẫn Vận hành
+
+```bash
+# 1. Khởi tạo Database trong SQL Server
+sqlcmd -S .\SQLEXPRESS -E -i "QLChoThueSach.sql"
+
+# 2. Biên dịch Solution
+msbuild "BookStore_LTTQ\BookStore_LTTQ.csproj" /t:Rebuild /p:Configuration=Debug
+
+# 3. Khởi chạy Ứng dụng
+BookStore_LTTQ\bin\Debug\BookStore_LTTQ.exe
+```
+

@@ -48,46 +48,68 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataProcess.cs" />
-    <Compile Include="FormMain.cs">
+    <!-- DTO Layer -->
+    <Compile Include="DTO\SachDTO.cs" />
+    <Compile Include="DTO\NhanVienDTO.cs" />
+    <Compile Include="DTO\KhachHangDTO.cs" />
+    <Compile Include="DTO\ThueTraDTO.cs" />
+    <Compile Include="DTO\DanhMucDTO.cs" />
+
+    <!-- DAL Layer -->
+    <Compile Include="DAL\DataProcess.cs" />
+    <Compile Include="DAL\SachDAL.cs" />
+    <Compile Include="DAL\NhanVienDAL.cs" />
+    <Compile Include="DAL\ThueTraDAL.cs" />
+    <Compile Include="DAL\BaoCaoDAL.cs" />
+
+    <!-- BLL Layer -->
+    <Compile Include="BLL\SachBLL.cs" />
+    <Compile Include="BLL\NhanVienBLL.cs" />
+    <Compile Include="BLL\ThueTraBLL.cs" />
+    <Compile Include="BLL\BaoCaoBLL.cs" />
+
+    <!-- GUI Layer -->
+    <Compile Include="GUI\FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="GUI\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSach.cs">
+    <Compile Include="GUI\FormSach.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSach.Designer.cs">
+    <Compile Include="GUI\FormSach.Designer.cs">
       <DependentUpon>FormSach.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormNhanVien.cs">
+    <Compile Include="GUI\FormNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormNhanVien.Designer.cs">
+    <Compile Include="GUI\FormNhanVien.Designer.cs">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormThueSach.cs">
+    <Compile Include="GUI\FormThueSach.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormThueSach.Designer.cs">
+    <Compile Include="GUI\FormThueSach.Designer.cs">
       <DependentUpon>FormThueSach.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTraSach.cs">
+    <Compile Include="GUI\FormTraSach.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTraSach.Designer.cs">
+    <Compile Include="GUI\FormTraSach.Designer.cs">
       <DependentUpon>FormTraSach.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBaoCao.cs">
+    <Compile Include="GUI\FormBaoCao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBaoCao.Designer.cs">
+    <Compile Include="GUI\FormBaoCao.Designer.cs">
       <DependentUpon>FormBaoCao.cs</DependentUpon>
     </Compile>
+
+    <!-- Entry & Properties -->
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="GUI\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

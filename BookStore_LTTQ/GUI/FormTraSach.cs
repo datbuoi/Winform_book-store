@@ -1,12 +1,18 @@
-﻿﻿using System;
+﻿using System;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using BookStore_LTTQ.BLL;
+using BookStore_LTTQ.DTO;
 
 namespace BookStore_LTTQ
+namespace BookStore_LTTQ.GUI
 {
     public partial class FormTraSach : Form
     {
+        private readonly ThueTraBLL _thueTraBLL = new ThueTraBLL();
+
         private DataTable dtChiTietTra;
         private DataTable dtSachChuaTra;
         private DateTime ngayThueGoc = DateTime.Now;
@@ -42,6 +48,7 @@ namespace BookStore_LTTQ
         private void LoadComboBoxNhanVien()
         {
             cboNhanVien.DataSource = DataProcess.DocBang("SELECT MaNV, TenNV + ' (' + MaNV + ')' AS HienThi FROM tNhanVien");
+            cboNhanVien.DataSource = _thueTraBLL.GetNhanVien();
             cboNhanVien.DisplayMember = "HienThi";
             cboNhanVien.ValueMember = "MaNV";
         }
@@ -49,6 +56,7 @@ namespace BookStore_LTTQ
         private void LoadComboBoxViPham()
         {
             DataTable dtVP = DataProcess.DocBang("SELECT MaVP, TenVP, TienPhat FROM tViPham");
+            DataTable dtVP = _thueTraBLL.GetViPham();
             DataTable dtVPHienThi = dtVP.Copy();
 
             DataRow r = dtVPHienThi.NewRow();
@@ -74,6 +82,7 @@ namespace BookStore_LTTQ
                            WHERE ct.DaTra = 0
                            ORDER BY t.MaThue DESC";
             DataTable dt = DataProcess.DocBang(sql);
+            DataTable dt = _thueTraBLL.GetDanhSachPhieuThueChuaTra();
             cboMaThue.DataSource = dt;
             cboMaThue.DisplayMember = "HienThi";
             cboMaThue.ValueMember = "MaThue";
@@ -113,6 +122,7 @@ namespace BookStore_LTTQ
             // Gọi thủ tục hoặc truy vấn chỉ lấy sách CHƯA TRẢ (DaTra = 0) từ mã thuê này
             SqlParameter[] p = { new SqlParameter("@MaThue", maThue) };
             dtSachChuaTra = DataProcess.ExecProcedure("SP_GetSachChuaTraTheoPhieu", p);
+            dtSachChuaTra = _thueTraBLL.GetChiTietSachChuaTra(maThue);
 
             DataTable dtHienThi = dtSachChuaTra.Copy();
             dtHienThi.Columns.Add("HienThi", typeof(string));
@@ -222,6 +232,7 @@ namespace BookStore_LTTQ
             string maVP = cboViPham.SelectedValue?.ToString();
             string tenVP = (cboViPham.SelectedItem as DataRowView)?["TenVP"].ToString();
             decimal tienPhat = decimal.Parse(txtTienPhat.Text.Replace(",", ""));
+            decimal tienPhat = decimal.Parse(txtTienPhat.Text);
             decimal tienThue = donGia * soNgay * soLuong;
             decimal thanhTien = tienThue + tienPhat;
 
@@ -269,6 +280,7 @@ namespace BookStore_LTTQ
         {
             object newMa = DataProcess.LayGiaTri("DECLARE @Ma CHAR(10); EXEC SP_GenerateNewMaTra @Ma OUTPUT; SELECT @Ma;");
             txtMaTra.Text = newMa != null ? newMa.ToString().Trim() : "TR" + DateTime.Now.ToString("yyMM") + "0001";
+            txtMaTra.Text = _thueTraBLL.SinhMaTraMoi();
             dtpNgayTra.Value = DateTime.Now;
 
             dtChiTietTra.Clear();
@@ -327,9 +339,20 @@ namespace BookStore_LTTQ
             }
 
             try
+            PhieuTraDTO phieu = new PhieuTraDTO
             {
                 using (SqlConnection conn = DataProcess.GetConnection())
                 using (SqlTransaction trans = conn.BeginTransaction())
+                MaTra = txtMaTra.Text.Trim(),
+                MaThue = cboMaThue.SelectedValue?.ToString(),
+                MaNV = cboNhanVien.SelectedValue?.ToString(),
+                NgayTra = dtpNgayTra.Value.Date,
+                TongThanhToan = tongTien
+            };
+
+            foreach (DataRow r in dtChiTietTra.Rows)
+            {
+                phieu.DanhSachChiTiet.Add(new ChiTietTraDTO
                 {
                     try
                     {
@@ -345,6 +368,12 @@ namespace BookStore_LTTQ
                             cmdTra.Parameters.AddWithValue("@TongTien", tongTien);
                             cmdTra.ExecuteNonQuery();
                         }
+                    MaTra = phieu.MaTra,
+                    MaSach = r["MaSach"].ToString(),
+                    MaVP = r["MaVP"]?.ToString(),
+                    ThanhTien = Convert.ToDecimal(r["ThanhTien"])
+                });
+            }
 
                         // 2. Thêm từng dòng chi tiết trả (Trigger trg_ChiTietTra_Insert sẽ tự động cộng tồn kho và set DaTra = 1)
                         string sqlCT = @"INSERT INTO tChiTietTraSach (MaTra, MaSach, MaVP, ThanhTien)
@@ -361,6 +390,10 @@ namespace BookStore_LTTQ
                                 cmdCT.ExecuteNonQuery();
                             }
                         }
+            if (_thueTraBLL.LapPhieuTra(phieu, out string error))
+            {
+                MessageBox.Show("Lập phiếu trả sách thành công!\nTổng tiền: " + tongTien.ToString("N0") + " đ\nSố lượng tồn kho sách đã được tự động cộng lại.",
+                    "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         trans.Commit();
                         MessageBox.Show("Lập phiếu trả sách thành công!\nTổng tiền: " + tongTien.ToString("N0") + " đ\nSố lượng tồn kho sách đã được tự động cộng lại.",
@@ -375,10 +408,14 @@ namespace BookStore_LTTQ
                         MessageBox.Show("Lỗi khi lưu phiếu trả: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                TaoPhieuMoi();
+                LoadDanhSachPhieuThue();
             }
             catch (Exception ex)
+            else
             {
                 MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error, "Lỗi khi lưu phiếu trả", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

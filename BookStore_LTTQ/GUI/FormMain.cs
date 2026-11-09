@@ -1,8 +1,9 @@
-﻿﻿using System;
+using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using BookStore_LTTQ.DAL;
 
-namespace BookStore_LTTQ
+namespace BookStore_LTTQ.GUI
 {
     public partial class FormMain : Form
     {
@@ -75,8 +76,9 @@ namespace BookStore_LTTQ
         {
             MessageBox.Show("CHƯƠNG TRÌNH QUẢN LÝ CỬA HÀNG CHO THUÊ SÁCH TRUYỆN\n" +
                             "Môn học: Lập trình trực quan (C# WinForms + SQL Server)\n" +
+                            "Kiến trúc chuẩn 3 lớp: GUI - BLL - DAL - DTO\n" +
                             "Hỗ trợ đầy đủ 9 yêu cầu đề bài.",
-                            "Thông tin chương trình", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
