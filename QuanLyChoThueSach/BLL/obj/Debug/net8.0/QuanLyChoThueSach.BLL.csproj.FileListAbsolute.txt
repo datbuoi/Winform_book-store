@@ -1,0 +1,17 @@
+c:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\bin\Debug\net8.0\QuanLyChoThueSach.BLL.deps.json
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\bin\Debug\net8.0\QuanLyChoThueSach.BLL.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\bin\Debug\net8.0\QuanLyChoThueSach.BLL.pdb
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\bin\Debug\net8.0\QuanLyChoThueSach.DAL.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\bin\Debug\net8.0\QuanLyChoThueSach.DTO.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\bin\Debug\net8.0\QuanLyChoThueSach.DAL.pdb
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\bin\Debug\net8.0\QuanLyChoThueSach.DTO.pdb
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\QuanLyChoThueSach.BLL.csproj.AssemblyReference.cache
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\QuanLyChoThueSach.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\QuanLyChoThueSach.BLL.AssemblyInfoInputs.cache
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\QuanLyChoThueSach.BLL.AssemblyInfo.cs
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\QuanLyChoThueSach.BLL.csproj.CoreCompileInputs.cache
+c:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\QuanLyCh.F9322CE7.Up2Date
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\QuanLyChoThueSach.BLL.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\refint\QuanLyChoThueSach.BLL.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\QuanLyChoThueSach.BLL.pdb
+c:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\ref\QuanLyChoThueSach.BLL.dll

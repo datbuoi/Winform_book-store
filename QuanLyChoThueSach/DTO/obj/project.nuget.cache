@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "bP9S31mqGA8=",
+  "success": true,
+  "projectFilePath": "c:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\quang\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.31\\microsoft.netcore.app.ref.8.0.31.nupkg.sha512",
+    "C:\\Users\\quang\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.31\\microsoft.windowsdesktop.app.ref.8.0.31.nupkg.sha512",
+    "C:\\Users\\quang\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.31\\microsoft.aspnetcore.app.ref.8.0.31.nupkg.sha512"
+  ],
+  "logs": []
+}

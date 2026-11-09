@@ -1,0 +1,15 @@
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\bin\Debug\net8.0\QuanLyChoThueSach.DAL.deps.json
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\bin\Debug\net8.0\QuanLyChoThueSach.DAL.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\bin\Debug\net8.0\QuanLyChoThueSach.DAL.pdb
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\bin\Debug\net8.0\QuanLyChoThueSach.DTO.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\bin\Debug\net8.0\QuanLyChoThueSach.DTO.pdb
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\QuanLyChoThueSach.DAL.csproj.AssemblyReference.cache
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\QuanLyChoThueSach.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\QuanLyChoThueSach.DAL.AssemblyInfoInputs.cache
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\QuanLyChoThueSach.DAL.AssemblyInfo.cs
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\QuanLyChoThueSach.DAL.csproj.CoreCompileInputs.cache
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\QuanLyCh.2A887309.Up2Date
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\QuanLyChoThueSach.DAL.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\refint\QuanLyChoThueSach.DAL.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\QuanLyChoThueSach.DAL.pdb
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\ref\QuanLyChoThueSach.DAL.dll
