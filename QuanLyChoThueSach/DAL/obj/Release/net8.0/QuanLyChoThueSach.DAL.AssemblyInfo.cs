@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuanLyChoThueSach.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eccd24bdcff28887ab4f01b9a2eb6db6deb79f7c")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuanLyChoThueSach.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuanLyChoThueSach.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

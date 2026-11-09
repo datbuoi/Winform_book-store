@@ -61,16 +61,16 @@ public partial class frmBaoCao : Form
 
     // ---- Báo cáo 8: tiền thuê theo tháng / quý / năm ----
 
+    private ThongKeKieu LayKieuThongKe() => cboKieu.SelectedIndex switch
+    {
+        1 => ThongKeKieu.Quy,
+        2 => ThongKeKieu.Nam,
+        _ => ThongKeKieu.Thang
+    };
+
     private void NapDoanhThu()
     {
-        var kieu = cboKieu.SelectedIndex switch
-        {
-            1 => ThongKeKieu.Quy,
-            2 => ThongKeKieu.Nam,
-            _ => ThongKeKieu.Thang
-        };
-
-        var dt = BaoCaoBLL.DoanhThu(kieu);
+        var dt = BaoCaoBLL.DoanhThu(LayKieuThongKe());
         dgvDoanhThu.DataSource = dt;
 
         UiHelper.Cot(dgvDoanhThu, "Nam", "Năm");
@@ -100,4 +100,60 @@ public partial class frmBaoCao : Form
     }
 
     private void btnXemTop5_Click(object? sender, EventArgs e) => LamMoiTabHienTai();
+
+    // ---- Xuất PDF ----
+
+    private void btnPdfChuaTra_Click(object? sender, EventArgs e) =>
+        XuatPdf("BaoCao_SachChuaTra", BaoCaoPdfBLL.XuatSachChuaTra);
+
+    private void btnPdfDoanhThu_Click(object? sender, EventArgs e)
+    {
+        var kieu = LayKieuThongKe();
+        XuatPdf($"BaoCao_TienThueTheo{kieu}", path => BaoCaoPdfBLL.XuatDoanhThu(path, kieu));
+    }
+
+    private void btnPdfTop5_Click(object? sender, EventArgs e) =>
+        XuatPdf("BaoCao_Top5Sach", BaoCaoPdfBLL.XuatTop5);
+
+    /// <summary>Hỏi nơi lưu, tạo file PDF rồi hỏi có mở xem ngay không.</summary>
+    private void XuatPdf(string tenGoiY, Action<string> taoFile)
+    {
+        using var dlg = new SaveFileDialog
+        {
+            Title = "Lưu báo cáo PDF",
+            Filter = "File PDF (*.pdf)|*.pdf",
+            FileName = $"{tenGoiY}_{DateTime.Now:yyyyMMdd_HHmm}.pdf",
+            AddExtension = true,
+            DefaultExt = "pdf",
+            OverwritePrompt = true
+        };
+        if (dlg.ShowDialog(this) != DialogResult.OK) return;
+
+        try
+        {
+            Cursor = Cursors.WaitCursor;
+            taoFile(dlg.FileName);
+        }
+        catch (Exception ex)
+        {
+            UiHelper.BaoLoi(ex);
+            return;
+        }
+        finally
+        {
+            Cursor = Cursors.Default;
+        }
+
+        if (UiHelper.XacNhan($"Đã lưu báo cáo:\n{dlg.FileName}\n\nBạn có muốn mở file ngay không?"))
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(dlg.FileName) { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                UiHelper.BaoLoi(ex);
+            }
+        }
+    }
 }

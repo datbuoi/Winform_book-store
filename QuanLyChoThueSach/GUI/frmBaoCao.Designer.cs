@@ -24,6 +24,9 @@ namespace QuanLyChoThueSach.GUI
             this.pnlChuaTra = new System.Windows.Forms.Panel();
             this.lblSoChuaTra = new System.Windows.Forms.Label();
             this.btnXemChuaTra = new System.Windows.Forms.Button();
+            this.btnPdfChuaTra = new System.Windows.Forms.Button();
+            this.btnPdfDoanhThu = new System.Windows.Forms.Button();
+            this.btnPdfTop5 = new System.Windows.Forms.Button();
             this.tabDoanhThu = new System.Windows.Forms.TabPage();
             this.dgvDoanhThu = new System.Windows.Forms.DataGridView();
             this.pnlDoanhThu = new System.Windows.Forms.Panel();
@@ -83,6 +86,7 @@ namespace QuanLyChoThueSach.GUI
             // 
             this.pnlChuaTra.Controls.Add(this.lblSoChuaTra);
             this.pnlChuaTra.Controls.Add(this.btnXemChuaTra);
+            this.pnlChuaTra.Controls.Add(this.btnPdfChuaTra);
             this.pnlChuaTra.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlChuaTra.Location = new System.Drawing.Point(0, 0);
             this.pnlChuaTra.Name = "pnlChuaTra";
@@ -92,7 +96,7 @@ namespace QuanLyChoThueSach.GUI
             // lblSoChuaTra
             // 
             this.lblSoChuaTra.AutoSize = true;
-            this.lblSoChuaTra.Location = new System.Drawing.Point(130, 15);
+            this.lblSoChuaTra.Location = new System.Drawing.Point(250, 15);
             this.lblSoChuaTra.Name = "lblSoChuaTra";
             this.lblSoChuaTra.Size = new System.Drawing.Size(10, 15);
             this.lblSoChuaTra.TabIndex = 1;
@@ -107,6 +111,16 @@ namespace QuanLyChoThueSach.GUI
             this.btnXemChuaTra.Text = "Xem báo cáo";
             this.btnXemChuaTra.UseVisualStyleBackColor = true;
             this.btnXemChuaTra.Click += new System.EventHandler(this.btnXemChuaTra_Click);
+            // 
+            // btnPdfChuaTra
+            // 
+            this.btnPdfChuaTra.Location = new System.Drawing.Point(127, 9);
+            this.btnPdfChuaTra.Name = "btnPdfChuaTra";
+            this.btnPdfChuaTra.Size = new System.Drawing.Size(105, 28);
+            this.btnPdfChuaTra.TabIndex = 2;
+            this.btnPdfChuaTra.Text = "Xuất PDF";
+            this.btnPdfChuaTra.UseVisualStyleBackColor = true;
+            this.btnPdfChuaTra.Click += new System.EventHandler(this.btnPdfChuaTra_Click);
             // 
             // tabDoanhThu
             // 
@@ -132,6 +146,7 @@ namespace QuanLyChoThueSach.GUI
             this.pnlDoanhThu.Controls.Add(this.lblKieu);
             this.pnlDoanhThu.Controls.Add(this.cboKieu);
             this.pnlDoanhThu.Controls.Add(this.btnXemDoanhThu);
+            this.pnlDoanhThu.Controls.Add(this.btnPdfDoanhThu);
             this.pnlDoanhThu.Controls.Add(this.lblTongDoanhThu);
             this.pnlDoanhThu.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlDoanhThu.Location = new System.Drawing.Point(0, 0);
@@ -170,11 +185,21 @@ namespace QuanLyChoThueSach.GUI
             this.btnXemDoanhThu.UseVisualStyleBackColor = true;
             this.btnXemDoanhThu.Click += new System.EventHandler(this.btnXemDoanhThu_Click);
             // 
+            // btnPdfDoanhThu
+            // 
+            this.btnPdfDoanhThu.Location = new System.Drawing.Point(350, 9);
+            this.btnPdfDoanhThu.Name = "btnPdfDoanhThu";
+            this.btnPdfDoanhThu.Size = new System.Drawing.Size(105, 28);
+            this.btnPdfDoanhThu.TabIndex = 4;
+            this.btnPdfDoanhThu.Text = "Xuất PDF";
+            this.btnPdfDoanhThu.UseVisualStyleBackColor = true;
+            this.btnPdfDoanhThu.Click += new System.EventHandler(this.btnPdfDoanhThu_Click);
+            // 
             // lblTongDoanhThu
             // 
             this.lblTongDoanhThu.AutoSize = true;
             this.lblTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lblTongDoanhThu.Location = new System.Drawing.Point(360, 14);
+            this.lblTongDoanhThu.Location = new System.Drawing.Point(480, 14);
             this.lblTongDoanhThu.Name = "lblTongDoanhThu";
             this.lblTongDoanhThu.Size = new System.Drawing.Size(10, 17);
             this.lblTongDoanhThu.TabIndex = 3;
@@ -202,6 +227,7 @@ namespace QuanLyChoThueSach.GUI
             // pnlTop5
             // 
             this.pnlTop5.Controls.Add(this.btnXemTop5);
+            this.pnlTop5.Controls.Add(this.btnPdfTop5);
             this.pnlTop5.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop5.Location = new System.Drawing.Point(0, 0);
             this.pnlTop5.Name = "pnlTop5";
@@ -217,6 +243,16 @@ namespace QuanLyChoThueSach.GUI
             this.btnXemTop5.Text = "Xem báo cáo";
             this.btnXemTop5.UseVisualStyleBackColor = true;
             this.btnXemTop5.Click += new System.EventHandler(this.btnXemTop5_Click);
+            // 
+            // btnPdfTop5
+            // 
+            this.btnPdfTop5.Location = new System.Drawing.Point(127, 9);
+            this.btnPdfTop5.Name = "btnPdfTop5";
+            this.btnPdfTop5.Size = new System.Drawing.Size(105, 28);
+            this.btnPdfTop5.TabIndex = 1;
+            this.btnPdfTop5.Text = "Xuất PDF";
+            this.btnPdfTop5.UseVisualStyleBackColor = true;
+            this.btnPdfTop5.Click += new System.EventHandler(this.btnPdfTop5_Click);
             // 
             // frmBaoCao
             // 
@@ -263,5 +299,8 @@ namespace QuanLyChoThueSach.GUI
         private System.Windows.Forms.DataGridView dgvTop5;
         private System.Windows.Forms.Panel pnlTop5;
         private System.Windows.Forms.Button btnXemTop5;
+        private System.Windows.Forms.Button btnPdfChuaTra;
+        private System.Windows.Forms.Button btnPdfDoanhThu;
+        private System.Windows.Forms.Button btnPdfTop5;
     }
 }

@@ -15,3 +15,5 @@ C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8
 C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\refint\QuanLyChoThueSach.BLL.dll
 C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\QuanLyChoThueSach.BLL.pdb
 c:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\ref\QuanLyChoThueSach.BLL.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\bin\Debug\net8.0\QuestPDF.Fonts.Lato.br
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\BLL\obj\Debug\net8.0\QuanLyChoThueSach.BLL.sourcelink.json

@@ -9,4 +9,4 @@ C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DTO\obj\Debug\net8
 C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DTO\obj\Debug\net8.0\refint\QuanLyChoThueSach.DTO.dll
 C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DTO\obj\Debug\net8.0\QuanLyChoThueSach.DTO.pdb
 C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DTO\obj\Debug\net8.0\ref\QuanLyChoThueSach.DTO.dll
-C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DTO\obj\Debug\net8.0\QuanLyCh.B63173AC.Up2Date
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DTO\obj\Debug\net8.0\QuanLyChoThueSach.DTO.sourcelink.json

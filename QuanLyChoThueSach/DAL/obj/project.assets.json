@@ -1735,8 +1735,8 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
-            "c:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj": {
-              "projectPath": "c:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj"
+            "C:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj": {
+              "projectPath": "C:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj"
             }
           }
         }

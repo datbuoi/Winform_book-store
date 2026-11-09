@@ -13,3 +13,4 @@ C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8
 C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\refint\QuanLyChoThueSach.DAL.dll
 C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\QuanLyChoThueSach.DAL.pdb
 C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\ref\QuanLyChoThueSach.DAL.dll
+C:\Users\quang\OneDrive\Máy tính\btl_lttq\QuanLyChoThueSach\DAL\obj\Debug\net8.0\QuanLyChoThueSach.DAL.sourcelink.json

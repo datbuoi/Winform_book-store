@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj": {}
+    "C:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj": {}
   },
   "projects": {
-    "c:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj": {
+    "C:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj",
+        "projectUniqueName": "C:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj",
         "projectName": "QuanLyChoThueSach.DTO",
-        "projectPath": "c:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj",
+        "projectPath": "C:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\QuanLyChoThueSach.DTO.csproj",
         "packagesPath": "C:\\Users\\quang\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\obj\\",
+        "outputPath": "C:\\Users\\quang\\OneDrive\\Máy tính\\btl_lttq\\QuanLyChoThueSach\\DTO\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

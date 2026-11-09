@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GUI"
   ],
-  "SelectedNode": "\\GUI",
+  "SelectedNode": "\\GUI\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

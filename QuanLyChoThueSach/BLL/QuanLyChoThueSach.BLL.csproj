@@ -12,4 +12,8 @@
     <ProjectReference Include="..\DTO\QuanLyChoThueSach.DTO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="QuestPDF" Version="2026.9.1" />
+  </ItemGroup>
+
 </Project>
