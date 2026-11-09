@@ -99,5 +99,10 @@ namespace BookStore_LTTQ.GUI
         {
 
         }
+
+        private void statusLabelTrangThai_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

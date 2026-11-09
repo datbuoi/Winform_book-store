@@ -92,6 +92,7 @@ namespace BookStore_LTTQ.GUI
             this.statusLabelTrangThai.Name = "statusLabelTrangThai";
             this.statusLabelTrangThai.Size = new System.Drawing.Size(110, 17);
             this.statusLabelTrangThai.Text = "Hệ thống: Sẵn sàng";
+            this.statusLabelTrangThai.Click += new System.EventHandler(this.statusLabelTrangThai_Click);
             // 
             // statusLabelCSDL
             // 
@@ -101,7 +102,7 @@ namespace BookStore_LTTQ.GUI
             // 
             // groupBoxNav
             // 
-            this.groupBoxNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(119)))), ((int)(((byte)(242)))));
+            this.groupBoxNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.groupBoxNav.Controls.Add(this.btnThoat);
             this.groupBoxNav.Controls.Add(this.btnBaoCao);
             this.groupBoxNav.Controls.Add(this.btnTraSach);
