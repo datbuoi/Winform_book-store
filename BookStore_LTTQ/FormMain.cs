@@ -44,7 +44,7 @@ namespace BookStore_LTTQ
         private void btnSach_Click(object sender, EventArgs e)
         {
             FormSach f = new FormSach();
-            f.ShowDialog();
+            f.ShowDialog(); 
         }
 
         private void btnNhanVien_Click(object sender, EventArgs e)
@@ -86,6 +86,16 @@ namespace BookStore_LTTQ
             {
                 Application.Exit();
             }
+        }
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBoxNav_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

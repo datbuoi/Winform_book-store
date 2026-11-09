@@ -18,23 +18,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.menuStripMain = new System.Windows.Forms.MenuStrip();
-            this.menuHeThong = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemKetNoi = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItemThoat = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuDanhMuc = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemSach = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemNhanVien = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuNghiepVu = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemThueSach = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemTraSach = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuBaoCao = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemSachChuaTra = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemDoanhThu = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemTop5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuTroGiup = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemThongTin = new System.Windows.Forms.ToolStripMenuItem();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.lblSubTitle = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -51,150 +34,11 @@
             this.panelCenter = new System.Windows.Forms.Panel();
             this.lblMoTa = new System.Windows.Forms.Label();
             this.lblChaoMung = new System.Windows.Forms.Label();
-            this.menuStripMain.SuspendLayout();
             this.panelHeader.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.groupBoxNav.SuspendLayout();
             this.panelCenter.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStripMain
-            // 
-            this.menuStripMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(242)))), ((int)(((byte)(246)))));
-            this.menuStripMain.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuHeThong,
-            this.menuDanhMuc,
-            this.menuNghiepVu,
-            this.menuBaoCao,
-            this.menuTroGiup});
-            this.menuStripMain.Location = new System.Drawing.Point(0, 0);
-            this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(984, 25);
-            this.menuStripMain.TabIndex = 0;
-            this.menuStripMain.Text = "menuStrip1";
-            // 
-            // menuHeThong
-            // 
-            this.menuHeThong.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemKetNoi,
-            this.toolStripSeparator1,
-            this.menuItemThoat});
-            this.menuHeThong.Name = "menuHeThong";
-            this.menuHeThong.Size = new System.Drawing.Size(74, 21);
-            this.menuHeThong.Text = "&Hệ thống";
-            // 
-            // menuItemKetNoi
-            // 
-            this.menuItemKetNoi.Name = "menuItemKetNoi";
-            this.menuItemKetNoi.Size = new System.Drawing.Size(202, 22);
-            this.menuItemKetNoi.Text = "Kiểm tra kết nối CSDL";
-            this.menuItemKetNoi.Click += new System.EventHandler(this.menuItemKetNoi_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(199, 6);
-            // 
-            // menuItemThoat
-            // 
-            this.menuItemThoat.Name = "menuItemThoat";
-            this.menuItemThoat.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuItemThoat.Size = new System.Drawing.Size(202, 22);
-            this.menuItemThoat.Text = "Thoát";
-            this.menuItemThoat.Click += new System.EventHandler(this.btnThoat_Click);
-            // 
-            // menuDanhMuc
-            // 
-            this.menuDanhMuc.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemSach,
-            this.menuItemNhanVien});
-            this.menuDanhMuc.Name = "menuDanhMuc";
-            this.menuDanhMuc.Size = new System.Drawing.Size(78, 21);
-            this.menuDanhMuc.Text = "&Danh mục";
-            // 
-            // menuItemSach
-            // 
-            this.menuItemSach.Name = "menuItemSach";
-            this.menuItemSach.Size = new System.Drawing.Size(191, 22);
-            this.menuItemSach.Text = "Quản lý Sách truyện";
-            this.menuItemSach.Click += new System.EventHandler(this.btnSach_Click);
-            // 
-            // menuItemNhanVien
-            // 
-            this.menuItemNhanVien.Name = "menuItemNhanVien";
-            this.menuItemNhanVien.Size = new System.Drawing.Size(191, 22);
-            this.menuItemNhanVien.Text = "Quản lý Nhân viên";
-            this.menuItemNhanVien.Click += new System.EventHandler(this.btnNhanVien_Click);
-            // 
-            // menuNghiepVu
-            // 
-            this.menuNghiepVu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemThueSach,
-            this.menuItemTraSach});
-            this.menuNghiepVu.Name = "menuNghiepVu";
-            this.menuNghiepVu.Size = new System.Drawing.Size(80, 21);
-            this.menuNghiepVu.Text = "&Nghiệp vụ";
-            // 
-            // menuItemThueSach
-            // 
-            this.menuItemThueSach.Name = "menuItemThueSach";
-            this.menuItemThueSach.Size = new System.Drawing.Size(195, 22);
-            this.menuItemThueSach.Text = "Lập Phiếu Thuê Sách";
-            this.menuItemThueSach.Click += new System.EventHandler(this.btnThueSach_Click);
-            // 
-            // menuItemTraSach
-            // 
-            this.menuItemTraSach.Name = "menuItemTraSach";
-            this.menuItemTraSach.Size = new System.Drawing.Size(195, 22);
-            this.menuItemTraSach.Text = "Lập Phiếu Trả Sách";
-            this.menuItemTraSach.Click += new System.EventHandler(this.btnTraSach_Click);
-            // 
-            // menuBaoCao
-            // 
-            this.menuBaoCao.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemSachChuaTra,
-            this.menuItemDoanhThu,
-            this.menuItemTop5});
-            this.menuBaoCao.Name = "menuBaoCao";
-            this.menuBaoCao.Size = new System.Drawing.Size(129, 21);
-            this.menuBaoCao.Text = "&Báo cáo & Thống kê";
-            // 
-            // menuItemSachChuaTra
-            // 
-            this.menuItemSachChuaTra.Name = "menuItemSachChuaTra";
-            this.menuItemSachChuaTra.Size = new System.Drawing.Size(267, 22);
-            this.menuItemSachChuaTra.Text = "Sách đang thuê chưa trả";
-            this.menuItemSachChuaTra.Click += new System.EventHandler(this.btnBaoCao_Click);
-            // 
-            // menuItemDoanhThu
-            // 
-            this.menuItemDoanhThu.Name = "menuItemDoanhThu";
-            this.menuItemDoanhThu.Size = new System.Drawing.Size(267, 22);
-            this.menuItemDoanhThu.Text = "Doanh thu theo Tháng/Quý/Năm";
-            this.menuItemDoanhThu.Click += new System.EventHandler(this.btnBaoCao_Click);
-            // 
-            // menuItemTop5
-            // 
-            this.menuItemTop5.Name = "menuItemTop5";
-            this.menuItemTop5.Size = new System.Drawing.Size(267, 22);
-            this.menuItemTop5.Text = "Top 5 sách doanh thu cao nhất";
-            this.menuItemTop5.Click += new System.EventHandler(this.btnBaoCao_Click);
-            // 
-            // menuTroGiup
-            // 
-            this.menuTroGiup.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemThongTin});
-            this.menuTroGiup.Name = "menuTroGiup";
-            this.menuTroGiup.Size = new System.Drawing.Size(69, 21);
-            this.menuTroGiup.Text = "&Trợ giúp";
-            // 
-            // menuItemThongTin
-            // 
-            this.menuItemThongTin.Name = "menuItemThongTin";
-            this.menuItemThongTin.Size = new System.Drawing.Size(209, 22);
-            this.menuItemThongTin.Text = "Thông tin chương trình";
-            this.menuItemThongTin.Click += new System.EventHandler(this.menuItemThongTin_Click);
             // 
             // panelHeader
             // 
@@ -202,7 +46,7 @@
             this.panelHeader.Controls.Add(this.lblSubTitle);
             this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 25);
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(984, 85);
             this.panelHeader.TabIndex = 1;
@@ -230,6 +74,7 @@
             this.lblTitle.Size = new System.Drawing.Size(764, 37);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "HỆ THỐNG QUẢN LÝ CỬA HÀNG CHO THUÊ SÁCH TRUYỆN";
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // statusStripMain
             // 
@@ -256,7 +101,7 @@
             // 
             // groupBoxNav
             // 
-            this.groupBoxNav.BackColor = System.Drawing.Color.White;
+            this.groupBoxNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(119)))), ((int)(((byte)(242)))));
             this.groupBoxNav.Controls.Add(this.btnThoat);
             this.groupBoxNav.Controls.Add(this.btnBaoCao);
             this.groupBoxNav.Controls.Add(this.btnTraSach);
@@ -266,12 +111,13 @@
             this.groupBoxNav.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBoxNav.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.groupBoxNav.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(41)))), ((int)(((byte)(59)))));
-            this.groupBoxNav.Location = new System.Drawing.Point(0, 110);
+            this.groupBoxNav.Location = new System.Drawing.Point(0, 85);
             this.groupBoxNav.Name = "groupBoxNav";
-            this.groupBoxNav.Size = new System.Drawing.Size(250, 479);
+            this.groupBoxNav.Size = new System.Drawing.Size(250, 504);
             this.groupBoxNav.TabIndex = 3;
             this.groupBoxNav.TabStop = false;
             this.groupBoxNav.Text = "Chức năng hệ thống";
+            this.groupBoxNav.Enter += new System.EventHandler(this.groupBoxNav_Enter);
             // 
             // btnThoat
             // 
@@ -369,9 +215,9 @@
             this.panelCenter.Controls.Add(this.lblMoTa);
             this.panelCenter.Controls.Add(this.lblChaoMung);
             this.panelCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCenter.Location = new System.Drawing.Point(250, 110);
+            this.panelCenter.Location = new System.Drawing.Point(250, 85);
             this.panelCenter.Name = "panelCenter";
-            this.panelCenter.Size = new System.Drawing.Size(734, 479);
+            this.panelCenter.Size = new System.Drawing.Size(734, 504);
             this.panelCenter.TabIndex = 4;
             // 
             // lblMoTa
@@ -406,16 +252,12 @@
             this.Controls.Add(this.groupBoxNav);
             this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.panelHeader);
-            this.Controls.Add(this.menuStripMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainMenuStrip = this.menuStripMain;
             this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý Cửa hàng Cho Thuê Sách Truyện";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.menuStripMain.ResumeLayout(false);
-            this.menuStripMain.PerformLayout();
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
             this.statusStripMain.ResumeLayout(false);
@@ -429,24 +271,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip menuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem menuHeThong;
-        private System.Windows.Forms.ToolStripMenuItem menuItemKetNoi;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem menuItemThoat;
-        private System.Windows.Forms.ToolStripMenuItem menuDanhMuc;
-        private System.Windows.Forms.ToolStripMenuItem menuItemSach;
-        private System.Windows.Forms.ToolStripMenuItem menuItemNhanVien;
-        private System.Windows.Forms.ToolStripMenuItem menuNghiepVu;
-        private System.Windows.Forms.ToolStripMenuItem menuItemThueSach;
-        private System.Windows.Forms.ToolStripMenuItem menuItemTraSach;
-        private System.Windows.Forms.ToolStripMenuItem menuBaoCao;
-        private System.Windows.Forms.ToolStripMenuItem menuItemSachChuaTra;
-        private System.Windows.Forms.ToolStripMenuItem menuItemDoanhThu;
-        private System.Windows.Forms.ToolStripMenuItem menuItemTop5;
-        private System.Windows.Forms.ToolStripMenuItem menuTroGiup;
-        private System.Windows.Forms.ToolStripMenuItem menuItemThongTin;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Label lblSubTitle;
         private System.Windows.Forms.Label lblTitle;
